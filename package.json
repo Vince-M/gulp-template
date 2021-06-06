@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Vince-M/gulp-template/issues"
   },
-  "homepage": "https://github.com/Vince-M/gulp-template#readme"
+  "homepage": "https://github.com/Vince-M/gulp-template#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
