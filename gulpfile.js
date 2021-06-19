@@ -2,7 +2,10 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
 const sourcemaps = require('gulp-sourcemaps');
+const browserSync = require('browser-sync').create();
+const less = require('gulp-less');
 
+// Sass
 gulp.task("sass", function(done) {
   return gulp.
   src(['./src/sass/**/*.scss', '!./src/sass/widget.scss'])
@@ -14,8 +17,28 @@ gulp.task("sass", function(done) {
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./dist/css'));
   done();
+});
+
+// Less
+gulp.task('less', function(done) {
+  return gulp.
+  src('./src/less/**/*.less')
+  .pipe(sourcemaps.init())
+  .pipe(less())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./dist/css'));
+  done();
 })
 
+// Watch Task with BrowserSync
 gulp.task('watch', function() {
-  gulp.watch('./src/sass/**/*.scss', gulp.series(['sass']))
+  browserSync.init({
+    server: {
+      baseDir: './'
+    },
+    browser: "firefox"
+  })
+
+  gulp.watch(['./src/sass/**/*.scss', '**/*.html', './src/less/**/*.less'], gulp.series(['sass', 'less']))
+  .on('change', browserSync.reload);
 });
