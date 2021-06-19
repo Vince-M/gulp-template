@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/Vince-M/gulp-template#readme",
   "devDependencies": {
+    "browser-sync": "^2.26.14",
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
     "node-sass": "^6.0.0"
+  },
+  "dependencies": {
+    "gulp-sourcemaps": "^3.0.0"
   }
 }
